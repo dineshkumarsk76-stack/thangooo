@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Surprise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="heart-bg">
+        <div class="heart"></div><div class="heart"></div>
+        <div class="heart"></div><div class="heart"></div>
+        <div class="heart"></div><div class="heart"></div>
+    </div>
+
+    <div class="container" id="main-container">
+        <h1 class="names">Dinesh 💘 Kavipriya</h1>
+        <h2 class="question">Will you be my Valentine? 💕</h2>
+        <p>Do you want to see my love? Press "YES"</p>
+        <div class="button-box">
+            <button id="yes-btn">YES</button>
+            <button id="no-btn">NO</button>
+        </div>
+    </div>
+
+    <div class="heart-box-container hidden" id="gift-box">
+        <img src="gift.png" alt="Heart Gift" class="real-heart-img">
+        <p class="tap-text">Tap to open my Heart! ❤️</p>
+    </div>
+
+    <div class="gallery-container hidden" id="gallery-box">
+        
+        <audio id="love-song" loop>
+            <source src="song.mp3" type="audio/mp3">
+        </audio>
+
+        <h1 class="msg-title">This is for you Thangoo ❤️</h1>
+        
+        <div class="content-wrapper">
+            
+            <div class="side-text left">
+                <p>“Every heartbeat of mine already knows the answer—will you be my Valentine forever? ❤️”</p>
+            </div>
+
+            <div class="photo-frame">
+                <img id="slideshow-img" src="" alt="Our Memory">
+            </div>
+
+            <div class="side-text right">
+                <p>Love you de thangoo 😘💋</p>
+            </div>
+            
+        </div>
+        
+        <p class="love-note">Happy Valentine's Day! 💖</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
