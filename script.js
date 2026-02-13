@@ -6,81 +6,47 @@ const galleryBox = document.getElementById('gallery-box');
 const audio = document.getElementById('love-song');
 const slideshowImg = document.getElementById('slideshow-img');
 
-// --- போட்டோஸ் லிஸ்ட் (photos ஃபோல்டருக்குள் இருக்க வேண்டும்) ---
+// 1. Photos List (Folder name 'photos/' ah thookiyachu)
 const photos = [
-    'photos/p1.jpg',
-    'photos/p2.jpg',
-    'photos/p3.jpg',
-    'photos/p4.jpg',
-    'photos/p5.jpg',
-    'photos/p6.jpg',
-    'photos/p7.jpg',
-    'photos/p8.jpg',
+    'p1.jpg',
+    'p2.jpg',
+    'p3.jpg',
+    'p4.jpg',
+    'p5.jpg',
+    'p6.jpg',
+    'p7.jpg',
+    'p8.jpg'
 ];
 
 let currentIndex = 0;
 
-// 1. NO Button ஓடும் லாஜிக்
+// 2. NO Button odum logic
 noBtn.addEventListener('mouseover', () => {
-    const containerRect = mainContainer.getBoundingClientRect();
-    const btnRect = noBtn.getBoundingClientRect();
-    const maxX = containerRect.width - btnRect.width - 40;
-    const maxY = containerRect.height - btnRect.height - 40;
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
     noBtn.style.position = 'absolute';
-    noBtn.style.left = `${randomX}px`;
-    noBtn.style.top = `${randomY}px`;
+    noBtn.style.left = `${x}px`;
+    noBtn.style.top = `${y}px`;
 });
 
-// 2. YES பட்டன் -> Heart Box காட்டுகிறது
+// 3. YES Button click panna gift box varum
 yesBtn.addEventListener('click', () => {
-    mainContainer.style.display = 'none';
+    mainContainer.classList.add('hidden');
     giftBox.classList.remove('hidden');
 });
 
-// 3. Heart Box கிளிக் -> Song Play & Photos Start (Direct Action)
+// 4. Gift box tap panna gallery varum
 giftBox.addEventListener('click', () => {
-    giftBox.classList.add('hidden'); // பாக்ஸ் மறையும்
-    galleryBox.classList.remove('hidden'); // கேலரி வரும்
-    
-    // பாட்டு ப்ளே ஆகும்
-    audio.play().catch(error => {
-        console.log("Audio play blocked. User interaction needed.");
-    });
-
-    // முதல் போட்டோவை செட் செய்
-    slideshowImg.src = photos[currentIndex];
-
-    // போட்டோ லூப் ஆரம்பம்
-    startSlideshow();
-    createLoveShower();
+    giftBox.classList.add('hidden');
+    galleryBox.classList.remove('hidden');
+    audio.play(); // Song play aagum
+    startSlideshow(); // Slideshow start aagum
 });
 
-// 5 செகண்டுக்கு ஒரு முறை போட்டோ மாறும் லாஜிக்
+// 5. Automatic Slideshow (5 Seconds once)
 function startSlideshow() {
     setInterval(() => {
-        currentIndex = (currentIndex + 1) % photos.length; // அடுத்த போட்டோ
-        slideshowImg.src = photos[currentIndex]; // போட்டோ மாறும்
-    }, 5000); // 5000ms = 5 நொடிகள்
+        currentIndex = (currentIndex + 1) % photos.length;
+        slideshowImg.src = photos[currentIndex];
+    }, 5000); // 5000ms = 5 Seconds
 }
-
-// இதய மழை
-function createLoveShower() {
-    setInterval(() => {
-        const heart = document.createElement('div');
-        heart.innerHTML = '❤️';
-        heart.style.position = 'absolute';
-        heart.style.fontSize = Math.random() * 20 + 20 + 'px';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.top = '-50px';
-        heart.style.animation = 'fall 3s linear forwards';
-        document.body.appendChild(heart);
-        setTimeout(() => { heart.remove(); }, 3000);
-    }, 100);
-}
-
-const styleSheet = document.createElement("style");
-styleSheet.innerText = `
-@keyframes fall { to { transform: translateY(110vh); opacity: 0; } }`;
-document.head.appendChild(styleSheet);
